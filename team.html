@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team Management — Mustache.js Example</title>
+
+  <!-- Mustache CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="stylesheetteam.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Team Management</h1>
+    <p class="subtitle">Nested JSON → rendered with <strong>Mustache.js</strong></p>
+  </header>
+
+  <main class="container">
+    <!-- Controls -->
+    <div class="controls">
+      <input id="search-input" type="search" placeholder="Search member or role..." />
+      <select id="dept-filter">
+        <option value="">All Departments</option>
+      </select>
+    </div>
+
+    <!-- Render target -->
+    <div id="team-list"></div>
+  </main>
+
+  <footer class="footer">
+    <small>Demo — Mustache.js nested rendering example</small>
+  </footer>
+
+  <!-- Mustache Template -->
+  <script id="team-template" type="x-tmpl-mustache">
+    {{#departments}}
+      <section class="department">
+        <div class="dept-header">
+          <h2>{{name}} <span class="badge">Head: {{head}}</span></h2>
+          <p class="dept-desc">{{description}}</p>
+        </div>
+
+        {{#members}}
+          <article class="member">
+            <div class="member-left">
+              <div class="avatar">{{initials}}</div>
+            </div>
+            <div class="member-right">
+              <h3>{{name}}</h3>
+              <p class="meta">{{role}} • <a href="mailto:{{email}}">{{email}}</a></p>
+              <p class="bio">{{bio}}</p>
+            </div>
+          </article>
+        {{/members}}
+      </section>
+    {{/departments}}
+  </script>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+</html>
